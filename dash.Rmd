@@ -5,41 +5,88 @@ output:
     orientation: columns
     vertical_layout: fill
     theme:
-      bg: "#fff"
+      bg: "#fff" # but just of columns/rows?
       fg: "#008B8B" # header color in BODY
       primary: "#008B8B" # navbar background
       headings-color: "#9932cc" # y not working?
       navbar-bg: "#9932cc"
       base_font: !expr bslib::font_google("Mulish")
       code_font: !expr bslib::font_google("DM Mono")
+      heading_font: !expr bslib::font_google("Fraunces")
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(palmerpenguins)
+library(tidyverse)
 ```
 
-Column {data-width=650}
+Column {data-width=650 .tabset}
 -----------------------------------------------------------------------
 
-### Chart A
+### Grouped: Bill length vs depth
+
+#### Am I wonky?
 
 ```{r}
+ggplot(data = penguins,
+                         aes(x = bill_length_mm,
+                             y = bill_depth_mm,
+                             group = species)) +
+  geom_point(aes(color = species,
+                 shape = species),
+             size = 3,
+             alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, aes(color = species)) +
+  theme_minimal() +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin bill dimensions",
+       subtitle = "Bill length and depth for Adelie, Chinstrap and Gentoo Penguins at Palmer Station LTER",
+       x = "Bill length (mm)",
+       y = "Bill depth (mm)",
+       color = "Penguin species",
+       shape = "Penguin species") +
+  theme(legend.position = c(0.85, 0.15),
+        legend.background = element_rect(fill = "white", color = NA),
+        plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot")
+```
 
+### Bill length vs depth
+
+```{r}
+ggplot(data = penguins,
+                         aes(x = bill_length_mm,
+                             y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  scale_color_manual(values = c("darkorange","purple","cyan4")) +
+  labs(title = "Penguin bill dimensions (omit species)",
+       subtitle = "Palmer Station LTER",
+       x = "Bill length (mm)",
+       y = "Bill depth (mm)") +
+  theme(plot.title.position = "plot",
+        plot.caption = element_text(hjust = 0, face= "italic"),
+        plot.caption.position = "plot") +
+  geom_smooth(method = "lm", se = FALSE, color = "gray50")
 ```
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Flipper length
 
 ```{r}
-
+# Histogram example: flipper length by species
+ggplot(data = penguins, aes(x = flipper_length_mm)) +
+  geom_histogram(aes(fill = species), alpha = 0.5, position = "identity") +
+  scale_fill_manual(values = c("darkorange","darkorchid","cyan4"))
 ```
 
-### Chart C
+### Penguin party!
 
-```{r}
-
+```{r echo=FALSE}
+knitr::include_graphics("images/penguins.png")
 ```
 
