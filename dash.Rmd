@@ -7,8 +7,8 @@ output:
     theme:
       bg: "#fff" # but just of columns/rows?
       fg: "#008B8B" # header color in BODY
-      primary: "#008B8B" # navbar background
-      headings-color: "#9932cc" # y not working?
+      primary: "#008B8B" # navbar background if not set
+      headings-color: "#ff8c00" # y not working?
       navbar-bg: "#9932cc"
       base_font: !expr bslib::font_google("Mulish")
       code_font: !expr bslib::font_google("DM Mono")
@@ -19,6 +19,7 @@ output:
 library(flexdashboard)
 library(palmerpenguins)
 library(tidyverse)
+#thematic::thematic_rmd() 
 ```
 
 Column {data-width=650 .tabset}
@@ -26,7 +27,7 @@ Column {data-width=650 .tabset}
 
 ### Grouped: Bill length vs depth
 
-#### Am I wonky?
+#### Am I wonky and orange?
 
 ```{r}
 ggplot(data = penguins,
@@ -61,7 +62,6 @@ ggplot(data = penguins,
                              y = bill_depth_mm)) +
   geom_point() +
   theme_minimal() +
-  scale_color_manual(values = c("darkorange","purple","cyan4")) +
   labs(title = "Penguin bill dimensions (omit species)",
        subtitle = "Palmer Station LTER",
        x = "Bill length (mm)",
