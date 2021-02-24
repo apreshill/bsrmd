@@ -1,0 +1,45 @@
+---
+title: "Penguins dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme:
+      bg: "#fff"
+      fg: "#008B8B" # header color in BODY
+      primary: "#008B8B" # navbar background
+      headings-color: "#9932cc" # y not working?
+      navbar-bg: "#9932cc"
+      base_font: !expr bslib::font_google("Mulish")
+      code_font: !expr bslib::font_google("DM Mono")
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(palmerpenguins)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
