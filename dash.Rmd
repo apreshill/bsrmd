@@ -19,7 +19,7 @@ output:
 library(flexdashboard)
 library(palmerpenguins)
 library(tidyverse)
-thematic::thematic_rmd() 
+#thematic::thematic_rmd() 
 ```
 
 Column {data-width=650 .tabset}
