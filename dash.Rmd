@@ -4,11 +4,12 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    css: penguins.scss
     theme:
       bg: "#fff" # but just of columns/rows?
       fg: "#008B8B" # header color in BODY
-      primary: "#008B8B" # navbar background if not set
-      headings-color: "#ff8c00" # y not working?
+      primary: "#008B8B" # navbar background if not set separately
+      headings-color: "darkorange" # y not working?
       navbar-bg: "#9932cc"
       base_font: !expr bslib::font_google("Mulish")
       code_font: !expr bslib::font_google("DM Mono")
@@ -53,6 +54,10 @@ ggplot(data = penguins,
         plot.caption = element_text(hjust = 0, face= "italic"),
         plot.caption.position = "plot")
 ```
+
+
+<p class="bs-purple">I'm bootstrap purple</p>
+<p class="penguin-purple">I'm penguin purple</p>
 
 ### Bill length vs depth
 
